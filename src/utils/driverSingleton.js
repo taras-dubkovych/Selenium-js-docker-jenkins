@@ -1,5 +1,6 @@
 import { Builder } from 'selenium-webdriver';
-import chrome from 'selenium-webdriver/chrome.js';
+import chrome from'selenium-webdriver/chrome.js';
+import('chromedriver');
 
 class DriverSingleton {
     constructor() {
@@ -10,10 +11,14 @@ class DriverSingleton {
         return DriverSingleton.instance;
     }
 
-    getDriver(browser = 'chrome') {
+   async getDriver(browser = 'chrome') {
         if (!this.driver) {
-            const options = new chrome.Options();
-            this.driver = new Builder().forBrowser(browser).setChromeOptions(options).build();
+            // Вказуємо опції Chrome, якщо потрібно
+        const options = await new chrome.Options();
+        this.driver = await new Builder()
+            .forBrowser(browser)
+            .setChromeOptions(options)
+            .build();
         }
         return this.driver;
     }

@@ -1,41 +1,25 @@
-import { By, until } from 'selenium-webdriver';
+import { By, until  } from 'selenium-webdriver';
 import fs from 'fs';
 import DriverSingleton from '../src/utils/driverSingleton.js';
 import LoginPage from '../src/pages/loginPage.js';
 import { expect } from 'chai';
+
+export const sleep = (milliseconds) => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+};
+
 describe('Login Tests', function () {
     this.timeout(30000);
     let driver, loginPage;
 
-    beforeEach(async function () {
-        driver = DriverSingleton.getDriver('chrome'); // Передаємо 'chrome' для запуску у Firefox
-       
+    this.beforeEach(async function () {
+        driver = await DriverSingleton.getDriver('chrome'); // Передаємо 'chrome' для запуску у Firefox
         
         await driver.get('https://www.saucedemo.com/');
     });
 
     // Основний тест
     it('should have the correct page title', async function () {
-        const title = await driver.getTitle();  // Отримуємо заголовок сторінки
-        expect(title).to.equal('Swag Labs');  // Перевіряємо заголовок
-    });
-      // Основний тест
-      it('should have the correct page title sdfsdfsdf', async function () {
-        const title = await driver.getTitle();  // Отримуємо заголовок сторінки
-        expect(title).to.equal('Swag Labs');  // Перевіряємо заголовок
-    });
-      // Основний тест
-      it('should have the correct page title sdfsdfsdf', async function () {
-        const title = await driver.getTitle();  // Отримуємо заголовок сторінки
-        expect(title).to.equal('Swag Labs');  // Перевіряємо заголовок
-    });
-      // Основний тест
-      it('should have the correct page title sdfsdfsdf', async function () {
-        const title = await driver.getTitle();  // Отримуємо заголовок сторінки
-        expect(title).to.equal('Swag Labs');  // Перевіряємо заголовок
-    });
-      // Основний тест
-      it('should have the correct page title sdfsdfsdfds', async function () {
         const title = await driver.getTitle();  // Отримуємо заголовок сторінки
         expect(title).to.equal('Swag Labs');  // Перевіряємо заголовок
     });
@@ -59,10 +43,12 @@ describe('Login Tests', function () {
             until.elementIsVisible(elementWithText), 
             10000
         );
+
+        await sleep(3000);
         expect(await elementWithText.getText()).to.equal('Products');  // Перевіряємо заголовок
     });
 
-    afterEach(async function () {
+    this.afterEach(async function () {
         await DriverSingleton.quitDriver();
     });
 });

@@ -3,9 +3,9 @@ import { By } from 'selenium-webdriver';
 export default class LoginPage {
     constructor(driver) {
         this.driver = driver;
-        this.usernameField = By.name('username');
+        this.usernameField = By.name('user-name');
         this.passwordField = By.name('password');
-        this.loginButton = By.id('loginButton');
+        this.loginButton = By.id('login-button');
     }
 
     async enterUsername(username) {
