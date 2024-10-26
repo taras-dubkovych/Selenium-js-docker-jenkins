@@ -1,0 +1,36 @@
+# Залежності Node.js
+node_modules/
+
+# Логи та звіти тестів
+*.log
+reports/
+allure-results/
+
+# Налаштування середовища
+.env
+
+# Конфігураційні файли IDE та редакторів
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Кеш файли
+.cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Скомпільовані або тимчасові файли
+*.tmp
+*.temp
+*.out
+
+# Інші вихідні або згенеровані файли
+output/
+build/
+dist/
+
+# Скріншоти та відеозаписи тестів
+screenshots/
+videos/
