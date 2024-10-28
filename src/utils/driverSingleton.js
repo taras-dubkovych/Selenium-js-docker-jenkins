@@ -16,6 +16,9 @@ class DriverSingleton {
             // Вказуємо опції Chrome, якщо потрібно
         const options = await new chrome.Options();
         options.addArguments('headless');
+        options.addArguments('disable-gpu');
+        options.addArguments('no-sandbox');
+        options.addArguments('window-size=1920,1080');
         this.driver = await new Builder()
             .forBrowser(browser)
             .setChromeOptions(options)
