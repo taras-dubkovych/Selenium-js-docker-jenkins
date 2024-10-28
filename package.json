@@ -10,7 +10,7 @@
     "test": "mocha --reporter mocha-junit-reporter tests/*.test.js --no-timeouts"
   },
   "mochaJunitReporterReporterOptions": {
-  "mochaFile": "./results/test-results.xml",
+  "mochaFile": "./test-results/test-results.xml",
   "suiteTitleSeparatedBy": " - ",
   "useFullSuiteTitle": true,
   "properties": {
