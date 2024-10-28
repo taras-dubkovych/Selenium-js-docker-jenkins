@@ -1,14 +1,14 @@
 pipeline {
-    agent {
-        docker {
-            image 'cypress/browsers:node-18.18.0-chrome-114.0.5735.90'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-            reuseNode true
-        }
-    }
+    agent any
 
     stages {
         stage('Build') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
             steps {
                 sh '''
                 ls -la
@@ -16,20 +16,18 @@ pipeline {
                 npm --version   
                 npm install selenium-webdriver mocha chromedriver --save-dev
                 npm install chai --save-dev
-                npm install mocha-junit-reporter --save-dev
-                '''
-            }
-        }
-
-        stage('Start Selenium Server') {
-            steps {
-                sh '''
-                docker run -d --name selenium-chrome -p 4444:4444 selenium/standalone-chrome:latest
+                npm install mocha chai mocha-junit-reporter --save-dev
                 '''
             }
         }
 
         stage('Test') {
+            agent {
+                docker {
+                    image 'selenium/standalone-chrome:latest' // Використовуємо Selenium образ із Chrome
+                    reuseNode true
+                }
+            }
             steps {
                 sh '''
                 ls -la
@@ -41,7 +39,6 @@ pipeline {
 
     post {
         always {
-            sh 'docker stop selenium-chrome || true && docker rm selenium-chrome || true'
             archiveArtifacts artifacts: 'test-results.xml', allowEmptyArchive: true
             junit 'test-results.xml'
         }
