@@ -28,6 +28,7 @@ pipeline {
         stage('Start Selenium Server') {
             steps {
                 sh '''
+                docker --version
                 docker run -d --name selenium-chrome -p 4444:4444 selenium/standalone-chrome:latest
                 '''
             }
