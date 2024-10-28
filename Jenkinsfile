@@ -28,6 +28,10 @@ pipeline {
         stage('Start Selenium Server') {
             steps {
                 sh '''
+                 sudo apt update
+                sudo apt install -y docker.io
+                sudo systemctl start docker
+                sudo systemctl enable docker
                 docker --version
                 docker run -d --name selenium-chrome -p 4444:4444 selenium/standalone-chrome:latest
                 '''
@@ -37,10 +41,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh '''
-                sudo apt update
-                sudo apt install -y docker.io
-                sudo systemctl start docker
-                sudo systemctl enable docker
+               
                 ls -la
                 npm test
                 '''
