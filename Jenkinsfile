@@ -17,6 +17,7 @@ pipeline {
                 npm install selenium-webdriver mocha chromedriver --save-dev
                 npm install chai --save-dev
                 npm install mocha chai mocha-junit-reporter --save-dev
+                npm test
                 '''
             }
         }
