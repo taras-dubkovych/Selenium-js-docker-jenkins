@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="4.284" tests="2" failures="0">
-  <testsuite name="Root Suite" timestamp="2024-10-28T08:22:04" tests="0" time="0.000" failures="0">
+<testsuites name="Mocha Tests" time="3.772" tests="2" failures="0">
+  <testsuite name="Root Suite" timestamp="2024-10-28T08:26:44" tests="0" time="0.000" failures="0">
   </testsuite>
-  <testsuite name="Login Tests" timestamp="2024-10-28T08:22:04" tests="2" file="C:\Users\User\Documents\Test Automation\Selenium-js-docker-jenkins\tests\login.test.js" time="4.281" failures="0">
-    <testcase name="Login Tests should have the correct page title" time="0.013" classname="should have the correct page title">
+  <testsuite name="Login Tests" timestamp="2024-10-28T08:26:44" tests="2" file="C:\Users\User\Documents\Test Automation\Selenium-js-docker-jenkins\tests\login.test.js" time="3.769" failures="0">
+    <testcase name="Login Tests should have the correct page title" time="0.011" classname="should have the correct page title">
     </testcase>
-    <testcase name="Login Tests should display the correct heading" time="0.441" classname="should display the correct heading">
+    <testcase name="Login Tests should display the correct heading" time="0.426" classname="should display the correct heading">
     </testcase>
   </testsuite>
 </testsuites>
