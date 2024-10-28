@@ -25,7 +25,6 @@ describe('Login Tests', function () {
     });
 
     it('should display the correct heading', async function () {
-        console.log("111111")
         loginPage = new LoginPage(driver);
         const rawData = fs.readFileSync('./data/usersData.json');
         const userData = JSON.parse(rawData);
@@ -44,7 +43,7 @@ describe('Login Tests', function () {
             10000
         );
 
-        await sleep(3000);
+        // await sleep(3000);
         expect(await elementWithText.getText()).to.equal('Products');  // Перевіряємо заголовок
     });
 

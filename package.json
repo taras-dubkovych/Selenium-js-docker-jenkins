@@ -7,8 +7,16 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "mocha tests/*.tests.js --no-timeouts"
+    "test": "mocha --reporter mocha-junit-reporter tests/*.test.js --no-timeouts"
   },
+  "mochaJunitReporterReporterOptions": {
+  "mochaFile": "./results/test-results.xml",
+  "suiteTitleSeparatedBy": " - ",
+  "useFullSuiteTitle": true,
+  "properties": {
+    "environment": "staging"
+  }
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -16,6 +24,7 @@
   "devDependencies": {
     "chai": "^5.1.2",
     "mocha": "^10.7.3",
+    "mocha-junit-reporter": "^2.2.1",
     "selenium-webdriver": "^4.25.0",
     "webdriver-manager": "^12.1.9"
   },
