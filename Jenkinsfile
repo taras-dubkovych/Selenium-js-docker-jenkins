@@ -1,27 +1,19 @@
 pipeline {
     agent {
         docker {
-            image 'docker:19.03-dind'
-            args '--privileged -v /var/run/docker.sock:/var/run/docker.sock'
+            image 'cypress/browsers:node-18.8.0-chrome-103.0.5060.53-ff-102.0.1'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
             reuseNode true
         }
     }
 
     stages {
-        stage('Install Node.js') {
-            steps {
-                sh '''
-                apk add --no-cache nodejs npm
-                '''
-            }
-        }
-
         stage('Build') {
             steps {
                 sh '''
                 ls -la
                 node --version
-                npm --version
+                npm --version   
                 npm install selenium-webdriver mocha chromedriver --save-dev
                 npm install chai --save-dev
                 npm install mocha-junit-reporter --save-dev
