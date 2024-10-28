@@ -31,7 +31,7 @@ pipeline {
             steps {
                 sh '''
                 ls -la
-                npm test
+                npx mocha tests/*.js
                 '''
             }
         }
