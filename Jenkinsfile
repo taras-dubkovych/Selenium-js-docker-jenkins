@@ -1,14 +1,18 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:18-alpine' // Основний образ, в якому встановимо всі залежності та запустимо тести
+            args '-v /dev/shm:/dev/shm' // Параметри для оптимізації Chrome
+            reuseNode true
+        }
+    }
+
+    environment {
+        CHROME_BIN = '/usr/bin/google-chrome'
+    }
 
     stages {
         stage('Build') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
             steps {
                 sh '''
                 ls -la
@@ -16,24 +20,23 @@ pipeline {
                 npm --version   
                 npm install selenium-webdriver mocha chromedriver --save-dev
                 npm install chai --save-dev
-                npm install mocha chai mocha-junit-reporter --save-dev
+                npm install mocha-junit-reporter --save-dev
+                '''
+            }
+        }
+
+        stage('Start Selenium Server') {
+            steps {
+                sh '''
+                docker run -d --name selenium-chrome -p 4444:4444 selenium/standalone-chrome:latest
                 '''
             }
         }
 
         stage('Test') {
-            agent {
-                docker {
-                    image 'selenium/standalone-chrome:latest' // Використовуємо Selenium образ із Chrome
-                    reuseNode true
-                }
-            }
             steps {
                 sh '''
                 ls -la
-                npm install selenium-webdriver mocha chromedriver --save-dev
-                npm install chai --save-dev
-                npm install mocha chai mocha-junit-reporter --save-dev
                 npm test
                 '''
             }
@@ -42,6 +45,7 @@ pipeline {
 
     post {
         always {
+            sh 'docker stop selenium-chrome || true && docker rm selenium-chrome || true'
             archiveArtifacts artifacts: 'test-results.xml', allowEmptyArchive: true
             junit 'test-results.xml'
         }
