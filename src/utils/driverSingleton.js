@@ -15,6 +15,7 @@ class DriverSingleton {
         if (!this.driver) {
             // Вказуємо опції Chrome, якщо потрібно
         const options = await new chrome.Options();
+        options.addArguments('headless');
         this.driver = await new Builder()
             .forBrowser(browser)
             .setChromeOptions(options)
