@@ -1,47 +1,47 @@
 pipeline {
     agent any
 
+    // environment {
+    //     DOCKER_COMPOSE_PATH = './docker-compose.yml'
+    // }
+    
+
     stages {
-        stage('Build') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh '''
-                ls -la
-                node --version
-                npm --version   
-                docker --version
-                npm install selenium-webdriver mocha chromedriver --save-dev
-                npm install chai --save-dev
-                npm install mocha chai mocha-junit-reporter --save-dev
-                npm test
-                '''
+
+        stage ('Docker'){
+            steps{
+                sh 'docker build -t my-docker .'
             }
         }
 
-        stage('Test') {
-            agent {
-                docker {
-                    image 'selenium/standalone-chrome:latest' // Використовуємо Selenium образ із Chrome
-                    reuseNode true
-                }
+        // stage('Start Selenium Grid') {
+        //     steps {
+        //         sh 'docker-compose -f $DOCKER_COMPOSE_PATH up -d'
+        //     }
+        //}
+
+        stage('Run Tests') {
+           agent {
+            docker{
+                image 'my-docker'
+                reuseNode true
             }
+           }
             steps {
-                sh '''
-                ls -la
-                npm test
-                '''
+                sh 'npm test'
             }
         }
+
+        // stage('Stop Selenium Grid') {
+        //     steps {
+        //         sh 'docker-compose -f $DOCKER_COMPOSE_PATH down'
+        //     }
+        // }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: 'test-results.xml', allowEmptyArchive: true
+            archiveArtifacts artifacts: '**/test-results.xml', allowEmptyArchive: true
             junit 'test-results.xml'
         }
     }
