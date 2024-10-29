@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="8.019" tests="5" failures="0">
-  <testsuite name="Root Suite" timestamp="2024-10-28T14:26:11" tests="0" time="0.000" failures="0">
+<testsuites name="Mocha Tests" time="11.023" tests="5" failures="0">
+  <testsuite name="Root Suite" timestamp="2024-10-28T15:07:04" tests="0" time="0.000" failures="0">
   </testsuite>
-  <testsuite name="Login Tests" timestamp="2024-10-28T14:26:11" tests="2" file="C:\Users\User\Documents\Test Automation\Selenium-js-docker-jenkins\tests\login.test.js" time="3.467" failures="0">
+  <testsuite name="Login Tests" timestamp="2024-10-28T15:07:04" tests="2" file="C:\Users\User\Documents\Test Automation\Selenium-js-docker-jenkins\tests\login.test.js" time="6.338" failures="0">
     <testcase name="Login Tests should have the correct page title" time="0.008" classname="should have the correct page title">
     </testcase>
-    <testcase name="Login Tests should display the correct heading" time="0.361" classname="should display the correct heading">
+    <testcase name="Login Tests should display the correct heading" time="0.355" classname="should display the correct heading">
     </testcase>
   </testsuite>
-  <testsuite name="Login Tests" timestamp="2024-10-28T14:26:15" tests="3" file="C:\Users\User\Documents\Test Automation\Selenium-js-docker-jenkins\tests\loginCopy.test.js" time="4.549" failures="0">
+  <testsuite name="Login Tests" timestamp="2024-10-28T15:07:10" tests="3" file="C:\Users\User\Documents\Test Automation\Selenium-js-docker-jenkins\tests\loginCopy.test.js" time="4.682" failures="0">
     <testcase name="Login Tests should have the correct page title" time="0.007" classname="should have the correct page title">
     </testcase>
-    <testcase name="Login Tests should have the correct page title2" time="0.008" classname="should have the correct page title2">
+    <testcase name="Login Tests should have the correct page title2" time="0.007" classname="should have the correct page title2">
     </testcase>
-    <testcase name="Login Tests should have the correct page title3" time="0.007" classname="should have the correct page title3">
+    <testcase name="Login Tests should have the correct page title3" time="0.008" classname="should have the correct page title3">
     </testcase>
   </testsuite>
 </testsuites>
